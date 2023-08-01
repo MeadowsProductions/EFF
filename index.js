@@ -17,6 +17,8 @@ const startBtn = getid("start");
 
 const instructions = getid("instructions");
 
+const timer = getid("timer");
+
 const elements = [one, two, three, four, five, six, seven, eight, nine];
 
 const set = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
@@ -32,7 +34,7 @@ eight.addEventListener("click", () => {swap(eight, [five, seven, nine, extra])})
 nine.addEventListener("click", () => {swap(nine, [six, eight])});
 extra.addEventListener("click", () => {swap(extra, [one, two, three, four, five, six, seven, eight, nine])});
 
-startBtn.addEventListener("click", () => {startGame();})
+startBtn.addEventListener("click", () => {startGame()})
 
 function gen() {
     const rand = new Set();
@@ -63,6 +65,8 @@ function check() {
             container.style.display = "none";
             buffer.style.display = "inline-block";
             buffer.style.opacity = "1";
+            timer.innerText = "";
+            clearInterval(tim);
         }, 500)
     }
 }
@@ -70,9 +74,31 @@ function check() {
 function startGame() {
     gen();
     buffer.style.opacity="0";
-    setTimeout(()=>{buffer.style.display="none",container.style.display="grid";}, 500)
+    setTimeout(()=>{buffer.style.display="none",container.style.display="grid";}, 500);
+    startTimer();
 }
 
 function getid(id) {
     return document.getElementById(id);
+}
+
+function startTimer() {
+    let s = 0;
+    let m = 0;
+    timer.innerText = "0:00";
+    tim = setInterval(() => {
+        s++;
+        if(s <= 9){
+            timer.innerText = m + ":0" + s;
+            return false;
+        }
+        if(s === 60){
+            m++;
+            s = 0;
+            timer.innerText = m + ":" + s;
+            return false;
+        }
+        timer.innerText = m + ":" + s;
+    }, 1000)
+    
 }

@@ -81,6 +81,13 @@ body {
     transform: translateY(10px);
 }
 
+#timer{
+    text-align: center;
+    font-size: 35pt;
+    position: relative;
+    top: -50px;
+}
+
 .eff{
     font-size: 40pt;
 }
