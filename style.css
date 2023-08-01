@@ -8,6 +8,7 @@ body {
     align-items: center;
     min-height: 100vh;
     overflow: hidden;
+    user-select: none;
 }
 
 .grid-container {
